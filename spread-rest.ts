@@ -14,10 +14,23 @@ function spread() {
     const ar1 = ['a', 'b'];
     const ar2 = ['c', 'd'];
 
-    // Clone one level deep
+    // Clone ONE level deep ---------
     const arClone = [...ar1]; /*?*/  
+    
+    // Clone array of objects -------
+    const obj1 = { a: 1, b: 2 };
+    const obj2 = { a: 3, b: 4 };
+    const ar3 = [ obj1, obj2 ];
+    const ar3clone = [ { ...obj1 }, { ...obj2 } ]; /*?*/
+    obj1.a = 0;
+    obj2.b = 5; // Modify original objects
 
-    // Concatenated arrays
+    //-- Original array has the modified objects
+    ar3
+    //-- The array clone wasn't modified
+    ar3clone
+
+    // Concatenated arrays --------
     const arConcat = [...ar1, ...ar2]; /*?*/
 
 }
