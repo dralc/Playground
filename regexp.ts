@@ -7,8 +7,9 @@ function findGroups() {
 	
 	// RegExp.exec() returns a rich result with the groupings :) and all the matches but
 	// you'll have to re-run it until there aren't any more matches to consume
-	// NB. DON'T re-define the regexp within the while loop or you'll keep resetting
-	// exec()'s internal counter to 0
+	// NB. in order to iterate over the matches:
+	// - Must use RegExp flags 'g' or 'y' otherwise there won't be an internal counter to iterate on
+	// - DON'T re-define the regexp within the while loop or you'll keep resetting exec()'s internal counter to 0
 	let ar2;
 	while (ar2 = groups_re.exec(text)) {
 		// full match
@@ -22,4 +23,18 @@ function findGroups() {
 	} 
 }
 
+function parseAttribs() {
+	const text = '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FKhloeKardashian%2Fposts%2F10157313873347302&amp;width=500" width="500" height="688" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+	const re = /([a-z]+)="([^"]+)"/ig,
+		attribs = {};
+	let ar;
+
+	while(ar = re.exec(text)) {
+		attribs[ar[1]] = ar[2]
+	}
+
+	attribs /*?*/
+}
+
 findGroups()
+parseAttribs();
