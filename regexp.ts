@@ -23,18 +23,23 @@ function findGroups() {
 	} 
 }
 
-function parseAttribs() {
-	const text = '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FKhloeKardashian%2Fposts%2F10157313873347302&amp;width=500" width="500" height="688" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+/**
+ * Returns an object of all the attributes in `html`
+ * @param {string} html - html that contains the attributes
+ * @returns {object}
+ */
+function parseAttribs(html) {
 	const re = /([a-z]+)="([^"]+)"/ig,
 		attribs = {};
 	let ar;
 
-	while(ar = re.exec(text)) {
+	while(ar = re.exec(html)) {
 		attribs[ar[1]] = ar[2]
 	}
 
-	attribs /*?*/
+	return attribs;
 }
 
 findGroups()
-parseAttribs();
+
+parseAttribs('<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FKhloeKardashian%2Fposts%2F10157313873347302&amp;width=500" width="500" height="688" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'); /*?*/
