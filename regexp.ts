@@ -40,6 +40,22 @@ function parseAttribs(html) {
 	return attribs;
 }
 
+/**
+ * Returns the value of the `key` in document.cookie
+ * 
+ * @param {string} key - The name of the cookie
+ * @param {string} [all_cookies] - The full cookie string
+ * 
+ * @return {string|null}
+ */
+function getCookie(key, all_cookies) {
+	const ar = new RegExp('[; ]?' + key + '=([^; ]+)', 'i').exec(all_cookies || document.cookie);
+	return ar && ar[1];
+}
+
 findGroups()
 
 parseAttribs('<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FKhloeKardashian%2Fposts%2F10157313873347302&amp;width=500" width="500" height="688" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'); /*?*/
+
+var cookie_s = 'AMCVS_5FE61C8B5332A490D4D%40AdobeOrg=1; profile=abc456; s_cc=true';
+getCookie('profile', cookie_s) /*?*/
